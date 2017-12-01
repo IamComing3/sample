@@ -35,8 +35,6 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-      // return view('users.show', [$user]);
-
       /*
       * Transforming the user object $user into an associative array through the compact method
       */
