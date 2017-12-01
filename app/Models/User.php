@@ -47,9 +47,22 @@ class User extends Authenticatable
       $this->notify(new ResetPassword($token));
     }
 
+    /**
+    * a users has_mamy statuses:
+    */
     public function statuses()
     {
       return $this->hasMany(Status::class);
+    }
+
+    public function followers()
+    {
+      return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function followings()
+    {
+      return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
     /**
