@@ -47,6 +47,11 @@ class User extends Authenticatable
       $this->notify(new ResetPassword($token));
     }
 
+    public function statuses()
+    {
+      return $this->hasMany(Status::class);
+    }
+
     /**
     * User head image from gravatar
     *
@@ -57,5 +62,14 @@ class User extends Authenticatable
     {
       $hash = md5(strtolower(trim($this->attributes['email'])));
       return "http://www.gravatar.com/avatar/$hash?s=$size";
+    }
+
+    /**
+    * Get the current user all statuses
+    */
+    public function feed()
+    {
+      return $this->statuses()
+                  ->orderBy('created_at', 'desc');
     }
 }
