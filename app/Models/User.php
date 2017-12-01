@@ -28,6 +28,20 @@ class User extends Authenticatable
     ];
 
     /**
+    * Generate mail authentication notifications token
+    *
+    * The boot method will be loaded after the user model class is initialized
+    */
+    public static function boot()
+    {
+      parent::boot();
+
+      static::creating(function($user){
+        $user->activation_token = str_random(30);
+      });
+    }
+
+    /**
     * User head image from gravatar
     *
     * @param int $size
