@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassword;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -65,6 +66,29 @@ class User extends Authenticatable
       return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
+    public function follow($user_ids)
+    {
+      if (!is_array($user_ids)) {
+        $user_ids = compact($user_ids);
+      }
+
+      $this->followings()->sync($user_ids, false);
+    }
+
+    public function unfollow($user_ids)
+    {
+      if (!is_array($user_ids)) {
+        $user_ids = compact($user_ids);
+      }
+
+      $this->followings()->detach($user_ids);
+    }
+
+    public function isFollowing($user_id)
+    {
+      return $this->followings()->allRelatedIds()->contains($user_id);
+    }
+
     /**
     * User head image from gravatar
     *
@@ -78,11 +102,14 @@ class User extends Authenticatable
     }
 
     /**
-    * Get the current user all statuses
+    * Get the current user and all following users all statuses
     */
     public function feed()
     {
-      return $this->statuses()
-                  ->orderBy('created_at', 'desc');
+      $user_ids = Auth::user()->followings->pluck('id')->toArray();
+      array_push($user_ids, Auth::user()->id);
+      return Status::whereIn('user_id', $user_ids)
+                    ->with('user')
+                    ->orderBy('created_at', 'desc');
     }
 }
