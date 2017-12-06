@@ -46,4 +46,12 @@ git clone https://github.com/IamComing3/sample.git
   
   php artisan db:seed
 ```
+ - 添加站点配置
+ - 访问项目：
+  前台：http://站点域名
+  后台：http://站点域名/admin
+  
+  默认账号：
+  用户名：laravel@sample.com
+  密码：123456
   
