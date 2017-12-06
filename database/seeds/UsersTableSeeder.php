@@ -23,9 +23,9 @@ class UsersTableSeeder extends Seeder
 
         $user = User::first();
         $user->update([
-          'name' => 'Kevin',
-          'email' => '736074781@qq.com',
-          'password' => bcrypt('111111'),
+          'name' => 'Sample',
+          'email' => 'laravel@sample.com',
+          'password' => bcrypt('123456'),
           'is_admin' => true
         ]);
      }
