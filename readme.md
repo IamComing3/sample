@@ -43,6 +43,7 @@ git clone https://github.com/IamComing3/sample.git
  - 执行数据迁移：
 ```
   php artisan migrate
+  
   php artisan db:seed
 ```
   
