@@ -23,10 +23,10 @@
 - 查看关注用户的微博动态
 - 个人与关注人微博数据流
 
-## Security Vulnerabilities
+## 下载与安装
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+下载：
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+```
+git clone 
+```
