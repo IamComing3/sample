@@ -28,5 +28,22 @@
 下载：
 
 ```
-git clone 
+git clone https://github.com/IamComing3/sample.git
 ```
+
+安装：
+
+1. - 安装项目：
+```
+  composer install
+
+  php artisan key:generate
+```
+2. - 修改配置文件 `.env`
+
+3. - 执行数据迁移：
+```
+  php artisan migrate
+  php artisan db:seed
+```
+  
